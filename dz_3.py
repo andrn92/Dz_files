@@ -1,6 +1,7 @@
-list_files = ['1.txt', '2.txt', '3.txt'] 
+list_files = ['1.txt', '2.txt', '3.txt']
 file = '4.txt'
 dict_counters = {}
+list_counters = [0]*len(list_files)
 for i in range(len(list_files)):
     counter = 0
     with open(list_files[i], 'r', encoding='utf-8') as file_object:
@@ -8,7 +9,14 @@ for i in range(len(list_files)):
         for string in lst:
             counter += 1
         dict_counters[list_files[i]] = counter
-       
+        list_counters[i] = counter
+
+list_counters.sort()
+for key, value in dict_counters.items():
+    for i in range(len(list_counters)):
+        if list_counters[i] == value:
+            list_files[i] = key
+
 fl = False
 for i in range(len(list_files)):
     if fl == False:
@@ -34,4 +42,3 @@ for i in range(len(list_files)):
             for line in lines:
                 with open(file, 'a+', encoding='utf-8') as f:
                     f.write(line)
-                
